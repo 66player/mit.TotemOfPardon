@@ -1,0 +1,14 @@
+Item_Name: "&dTotem Ułaskawienia"
+Item_Lore:
+  - "&7Po śmierci odzyskasz swoje itemy"
+Boss_Bar_Enabled: true
+Boss_Bar_Message: "&c {PLAYER} &bużył totemu ułaskawienia !!"
+Boss_Bar_Color: "PURPLE"
+# Dostępne kolory Boss_bar:
+# PURPLE
+# BLUE
+# RED
+# GREEN
+# PINK
+# WHITE
+# YELLOW

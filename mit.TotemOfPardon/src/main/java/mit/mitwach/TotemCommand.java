@@ -20,7 +20,7 @@ public class TotemCommand implements CommandExecutor {
                 e.printStackTrace();
             }
         }  else if (sender instanceof Player p && (p.hasPermission("mit.totemofpardon") || p.isOp())) {
-            p.getInventory().addItem(new TotemItem().createTotem().left());
+            p.getInventory().addItem(new TotemItem().createTotem());
             p.sendMessage(ChatColor.GREEN + "You have received totem of pardon!");
         } else if (!sender.isOp() || !sender.hasPermission("mit.totemofpardon")) {
             sender.sendMessage(ChatColor.RED + "You haven't permission to !");

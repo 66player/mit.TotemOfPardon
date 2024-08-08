@@ -89,12 +89,7 @@ public class TotemListener implements Listener {
         message = message.replace("{PLAYER}", player.getDisplayName());
         message = ChatColor.translateAlternateColorCodes('&', message);
 
-        String barColorString = plugin.getConfig().getString("Boss_Bar_Color", "PURPLE");
-        BarColor barColor;
-        barColor = BarColor.valueOf(barColorString.toUpperCase());
-
-
-        BossBar bossBar = Bukkit.createBossBar(message, barColor, BarStyle.SEGMENTED_12, BarFlag.PLAY_BOSS_MUSIC, BarFlag.DARKEN_SKY);
+        BossBar bossBar = Bukkit.createBossBar(message, BarColor.PURPLE, BarStyle.SEGMENTED_12, BarFlag.PLAY_BOSS_MUSIC, BarFlag.DARKEN_SKY);
         for (Player player1 : Bukkit.getOnlinePlayers()) {
             bossBar.addPlayer(player1);
         }

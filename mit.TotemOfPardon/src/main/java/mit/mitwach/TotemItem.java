@@ -1,6 +1,5 @@
 package mit.mitwach;
 
-import it.unimi.dsi.fastutil.Pair;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -16,27 +15,28 @@ import java.util.List;
 
 public class TotemItem {
 
-    public Pair<ItemStack, ItemMeta> createTotem() {
+    public ItemStack createTotem() {
         Plugin plugin = TotemOfPardon.getPlugin(TotemOfPardon.class);
 
         ItemStack itemStack = new ItemStack(Material.TOTEM_OF_UNDYING);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
 
-        itemMeta.addEnchant(Enchantment.DURABILITY, 100, true);
-        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        if (itemMeta != null) {
+            itemMeta.addEnchant(Enchantment.DURABILITY, 100, true);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Item_Name")));
+            itemMeta.getPersistentDataContainer().set(new NamespacedKey(plugin, "totemofpardon"), PersistentDataType.BYTE, (byte)0);
 
-        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Item_Name")));
-        itemMeta.getPersistentDataContainer().set(new NamespacedKey(plugin, "totemofpardon"), PersistentDataType.BYTE, (byte)0);
+            List<String> lore = new ArrayList<>();
+            List<String> configLore = plugin.getConfig().getStringList("Item_Lore");
+            for (String line : configLore) {
+                lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            }
+            itemMeta.setLore(lore);
 
-        List<String> lore = new ArrayList<>();
-        for (int i = 0; i < plugin.getConfig().getList("Item_Lore").size(); i++) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', (String) plugin.getConfig().getList("Item_Lore").get(i)));
+            itemStack.setItemMeta(itemMeta);
         }
-        itemMeta.setLore(lore);
-
-        itemStack.setItemMeta(itemMeta);
-
-        return Pair.of(itemStack, itemMeta);
+        return itemStack;
     }
 }

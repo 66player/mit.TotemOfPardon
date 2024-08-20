@@ -1,0 +1,10 @@
+name: mit.TotemOfPardon
+version: '${project.version}'
+main: mit.mitwach.TotemOfPardon
+api-version: '1.17'
+author: 0nyc
+commands:
+  totemofpardon:
+permissions:
+  mit:
+    totemofpardon:
